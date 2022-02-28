@@ -1,0 +1,12 @@
+.table-scrollable {
+    max-height: Calc(100vh - 250px);
+    overflow: auto;
+    border: 1px solid #dee2e6;
+
+    thead {
+        position: sticky;
+        z-index: 5;
+        border-style: hidden;
+        top: 0;
+    }
+}

@@ -1,0 +1,80 @@
+<div class="row mt-3 justify-content-between">
+  <div class="col-5 col-md-3">
+    <ems-search (dataChange)="valueChange($event)"></ems-search>
+  </div>
+</div>
+<form name="form" #eForm="ngForm" (click)="addDepartment()" novalidate>
+  <div class="form-group">
+    <div class="row mt-3">
+      <div class="col-3">
+        <input type="text" name="departmentName" id="departmentName" #deptName="ngModel" autocomplete="off" required
+          minlength="2" class="form-control" [(ngModel)]="departmentName" placeholder="enter department"
+          [ngClass]="{'is-invalid': eForm.submitted && deptName.invalid}">
+        <div *ngIf="eForm.submitted && deptName.invalid" class="invalid-feedback">
+          <div *ngIf="deptName.errors.required">
+            Please enter department name
+          </div>
+          <div *ngIf="deptName.errors.minlength"> Department name minimum length is
+            {{deptName.errors.minlength?.requiredLength}}
+          </div>
+        </div>
+        <ng-container *ngIf="validationMessagae">
+          <div class="text-danger">{{validationMessagae}} </div>
+        </ng-container>
+      </div>
+      <div class="col-2">
+        <button class="btn btn-primary" type="submit">Add department</button>
+      </div>
+    </div>
+  </div>
+</form>
+<div class="row mt-3">
+  <div class="col-5">
+    <div class="table-scrollable">
+      <table class="table table-hover table-sm">
+        <thead class="thead-light">
+          <tr>
+            <th class="w-80" scope="col">Name</th>
+            <th class="w-20" scope="col">Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <ng-container *ngIf="(departments | nameFilter:searchTerm:'name') as departmentResult">
+            <tr *ngFor="let department of departmentResult; let $index = index">
+              <ng-container *ngIf="rowIndex !== $index">
+                <td class="w-80" scope="row">{{department.name}}</td>
+                <td>
+                  <div class="d-inline" title="Edit" (click)="editDepartment($index)">
+                    <i class="glyphicon glyphicon-edit"></i>
+                  </div>
+                  <div class="d-inline ml-2" title="Delete" (click)="deleteDepartment(department)">
+                    <i class="glyphicon glyphicon-trash"></i>
+                  </div>
+                </td>
+              </ng-container>
+
+              <ng-container *ngIf="rowIndex === $index">
+                <td>
+                  <input class="w-20 mt-2" type="text" class="form-control" [(ngModel)]="department.name">
+                </td>
+                <td>
+                  <div class="d-inline" title="Cacel" (click)="cancelRow($index)">
+                    <i class="glyphicon glyphicon-remove"></i>
+                  </div>
+                  <div class="d-inline ml-2" title="Update" (click)="updateDepartment(department, $index)">
+                    <i class="glyphicon glyphicon-ok"></i>
+                  </div>                 
+                </td>
+              </ng-container>
+            </tr>
+            <tr *ngIf="departmentResult.length === 0">
+              <td colspan="2">
+                <ems-no-rows></ems-no-rows>
+              </td>
+            </tr>
+          </ng-container>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,25 @@
+{
+  "employees": [
+    {
+      "id": 66525,
+      "fName": "Rasul",
+      "lName": "Dany",
+      "country": "India",
+      "dob": "2022-01-01",
+      "gender": "male",
+      "email": "rasul@gmail.com",
+      "department": "Finance",
+      "acceptTerms": true
+    }
+  ],
+  "departments": [
+    {
+      "id": 79938,
+      "name": "HR"
+    },
+    {
+      "id": 20271,
+      "name": "Finance"
+    }
+  ]
+}

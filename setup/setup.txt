@@ -1,0 +1,24 @@
+Development environment setup:-
+==============================
+1. Visual studio code
+2. Nodejs
+3. Json-server
+4. git
+5. Angular(12v) installation globally 
+
+
+Json-server setup:-
+===================
+1. install json-server
+2. Create one json-file(data.json) or use existing json file from the project data-server folder
+3. Run command from the file path 'json-server ems.json --watch'
+4. It will run the json server on 3000 port.
+
+
+Application Setup:-
+====================
+1. clone the app using the below path
+	https://github.com/nandhakishorch/EMS.git
+2. run 'npm install' command at package.json path
+3. run 'ng serve --port 4200 --open' (make it sure to run json-server)
+4. the above command will open the browser and run the app at 4200 port.
